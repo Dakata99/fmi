@@ -1,0 +1,79 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage{pgffor}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{amsfonts}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{soul}
+\usepackage{lipsum}
+\usepackage{listings}
+\usetikzlibrary{automata}
+\usepackage{wasysym}
+\usepackage{algpseudocode}
+\usepackage{systeme}
+\usepackage{pdfpages}
+
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\usepackage{amsthm}
+\theoremstyle{plain}
+
+\newtheorem*{definition}{Определение}
+\newtheorem*{principle}{Принцип}
+\newtheorem*{note}{Бележка}
+\newtheorem*{theorem}{Теорема}
+\newtheorem*{lemma}{Лема}
+\newtheorem*{example}{Пример}
+\newtheorem*{additional}{Допълнение}
+\newtheorem*{alg}{Алгоритъм}
+
+% Footnote without markter
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+% Bolded and underlined text
+% TODO: replace underline with ul
+\newcommand{\bu}[1]{\textbf{\underline{#1}}}
+
+% Grapch
+\newcommand{\graf}{\(G = (V, E)\)}
+
+% Mathematical expression
+\newcommand{\mexpr}[1]{\(#1\)}
+
+% Mathematical formula
+\newcommand{\mform}[1]{\[#1\]}
+
+% Then and only then when
+\newcommand{\totw}[0]{тогава и само тогава, когато }
+
+% Boxed text for definitions, theorems...
+\newcommand{\boxt}[1]{\fbox{#1}}
+
+\title{Записки по Дискретни структури}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+\tableofcontents
+
+\foreach \n in {1, ..., 19}{\include{sections/sec\n.tex}\newpage}
+
+\include{sections/formulas.tex}
+
+\end{document}
