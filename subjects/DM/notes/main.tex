@@ -10,11 +10,11 @@
 \usepackage{soul}
 \usepackage{lipsum}
 \usepackage{listings}
-\usetikzlibrary{automata}
 \usepackage{wasysym}
 \usepackage{algpseudocode}
 \usepackage{systeme}
 \usepackage{pdfpages}
+\usetikzlibrary{automata}
 
 \hypersetup{
     colorlinks,
@@ -28,10 +28,14 @@
 \theoremstyle{plain}
 
 \newtheorem*{definition}{Определение}
+\newtheorem*{descr}{Описание}
 \newtheorem*{principle}{Принцип}
-\newtheorem*{note}{Бележка}
+\newtheorem*{note}{Бележки}
 \newtheorem*{theorem}{Теорема}
 \newtheorem*{lemma}{Лема}
+\newtheorem*{axiom}{Аксиома}
+\newtheorem*{scheme}{Схема}
+\newtheorem*{consequence}{Следствие}
 \newtheorem*{example}{Пример}
 \newtheorem*{additional}{Допълнение}
 \newtheorem*{alg}{Алгоритъм}
@@ -47,9 +51,6 @@
 % Bolded and underlined text
 % TODO: replace underline with ul
 \newcommand{\bu}[1]{\textbf{\underline{#1}}}
-
-% Grapch
-\newcommand{\graf}{\(G = (V, E)\)}
 
 % Mathematical expression
 \newcommand{\mexpr}[1]{\(#1\)}
