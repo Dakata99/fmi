@@ -9,6 +9,8 @@
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{soul}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
 \usepackage{lipsum}
 \usepackage{listings}
 \usepackage{wasysym}
@@ -49,6 +51,14 @@
   \endgroup
 }
 
+% Boxed definitions
+%\newtcbtheorem{definition}{Определение}{%
+%        theorem name,%
+%        colback=black!5,%
+%        colframe=black!35!black,%
+%        fonttitle=\bfseries
+%}{definition}
+
 % Bolded and underlined text
 % TODO: replace underline with ul
 \newcommand{\bu}[1]{\textbf{\underline{#1}}}
@@ -73,6 +83,16 @@
 
 \newpage
 \tableofcontents
+
+\newpage
+
+% Better view
+%\begin{definition}{On Brontosaurs}{}
+%  \textbf{By Ann Elk (Misses)}
+%  \(V\)
+%  Brontosaurs are thin at one end, thick in the middle and thin again on the other end.
+%  Така е.
+%\end{definition}
 
 \foreach \n in {1, ..., 19}{\include{sections/sec\n.tex}\newpage}
 
