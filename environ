@@ -1,0 +1,4 @@
+#!/bin/bash
+
+alias build='cmake -S . -B build && cmake --build build'
+alias open_pdf='cmake --build build/ --target open_pdf'

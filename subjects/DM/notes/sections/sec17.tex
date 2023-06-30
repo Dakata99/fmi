@@ -3,26 +3,26 @@
 \subsection{Булеви функции (на една и две променливи). Съществени и несъществени променливи.}
 
 \begin{note}
-    \mexpr{J_2 = \{0, 1\}, J_2^n = \underbrace{J_2 \times J_2 \times ... \times J_2}_\text{\(n\) множителя}}
+	\mexpr{J_2 = \{0, 1\}, J_2^n = \underbrace{J_2 \times J_2 \times ... \times J_2}_\text{\(n\) множителя}}
 \end{note}
 
 \begin{definition}
-    \textbf{Булева ф-я} на \(n\) променливи е всяка ф-я \mexpr{f: J_2^n \to J_2} за някое \(n \ge 1\).
+	\textbf{Булева ф-я} на \(n\) променливи е всяка ф-я \mexpr{f: J_2^n \to J_2} за някое \(n \ge 1\).
 \end{definition}
 
-Булевите ф-ии на 0 променливи се отъждествяват с булевите константи 0 и 1, защото 0-кратното декартово 
+Булевите ф-ии на 0 променливи се отъждествяват с булевите константи 0 и 1, защото 0-кратното декартово
 произведение е {()}, откъдето домейнът е едноелементен и има точно две булеви ф-ии на 0 променливи.
 
 \begin{definition}
-    Нека \mexpr{f = (x_1, \dots, x_n)} е булева ф-я.
+	Нека \mexpr{f = (x_1, \dots, x_n)} е булева ф-я.
 
-    Променливата \(x_i\) се нарича \textbf{фиктивна (несъществена)}, ако
-    \begin{equation*}
-        f(x_1, x_2, \dots, x_{i - 1}, 0, x_{i + 1}, \dots, x_n) = f(x_1, \dots, x_{i - 1}, 1, x_{i + 1}, \dots, x_n)
-    \end{equation*}
-    за всяка стойност на \((n - 1)\)-вектора \mexpr{x_1x_2 \dots x_{i - 1}x_{i + 1} \dots x_n}.
+	Променливата \(x_i\) се нарича \textbf{фиктивна (несъществена)}, ако
+	\begin{equation*}
+		f(x_1, x_2, \dots, x_{i - 1}, 0, x_{i + 1}, \dots, x_n) = f(x_1, \dots, x_{i - 1}, 1, x_{i + 1}, \dots, x_n)
+	\end{equation*}
+	за всяка стойност на \((n - 1)\)-вектора \mexpr{x_1x_2 \dots x_{i - 1}x_{i + 1} \dots x_n}.
 
-    Променлива, която не е фиктивна, се нарича \textbf{съществена}.
+	Променлива, която не е фиктивна, се нарича \textbf{съществена}.
 \end{definition}
 
 \subsection{Формула над множество булеви функции. Булева функция, съответна на дадена формула.} % TODO:
@@ -32,54 +32,54 @@
 \subsection{Свойства на функциите на една и две променливи.}
 
 \begin{enumerate}
-    \item Комутативност
-    \begin{align*}
-        xy &= yx \\
-        x \vee y &= y \vee x \\
-        x \oplus y &= y \oplus x
-    \end{align*}
-    \item Асоциативност
-    \begin{align*}
-        (xy)z &= x(yz) \\
-        (x \vee y) \vee z &= x \vee (y \vee z) \\
-        (x \oplus y) \oplus z &= x \oplus (y \oplus z)
-    \end{align*}
-    \item Идемпотентност
-    \begin{align*}
-        xx &= x \\
-        x \oplus x &= \tilde{0} \\
-        x \vee x &= x
-    \end{align*}
-    \item Свойство на отрицанието
-    \begin{align*}
-        x\overline{x} &= \tilde{0} \\
-        x \vee \overline{x} &= \tilde{1} \\
-        x \oplus \overline{x} &= \tilde{1} \\
-        \overline{\overline{x}} &= x
-    \end{align*}
-    \item Свойство на константите
-    \begin{align*}
-        x\tilde{0} &= \tilde{0} \\
-        x\tilde{1} &= \tilde{1} \\
-        x \vee \tilde{1} &= \tilde{1} \\
-        x \oplus \tilde{1} &= \overline{x} \\
-        x \oplus \tilde{0} &= x \\
-        x \vee \tilde{0} &= x
-    \end{align*}
-    \item Закони на де Морган
-    \begin{align*}
-        \overline{x \vee y} &= \overline{x} \land \overline{y} \\
-        \overline{x \land y} &= \overline{x} \vee \overline{y}
-    \end{align*}
+	\item Комутативност
+	      \begin{align*}
+		      xy         & = yx         \\
+		      x \vee y   & = y \vee x   \\
+		      x \oplus y & = y \oplus x
+	      \end{align*}
+	\item Асоциативност
+	      \begin{align*}
+		      (xy)z                 & = x(yz)                 \\
+		      (x \vee y) \vee z     & = x \vee (y \vee z)     \\
+		      (x \oplus y) \oplus z & = x \oplus (y \oplus z)
+	      \end{align*}
+	\item Идемпотентност
+	      \begin{align*}
+		      xx         & = x         \\
+		      x \oplus x & = \tilde{0} \\
+		      x \vee x   & = x
+	      \end{align*}
+	\item Свойство на отрицанието
+	      \begin{align*}
+		      x\overline{x}           & = \tilde{0} \\
+		      x \vee \overline{x}     & = \tilde{1} \\
+		      x \oplus \overline{x}   & = \tilde{1} \\
+		      \overline{\overline{x}} & = x
+	      \end{align*}
+	\item Свойство на константите
+	      \begin{align*}
+		      x\tilde{0}         & = \tilde{0}    \\
+		      x\tilde{1}         & = \tilde{1}    \\
+		      x \vee \tilde{1}   & = \tilde{1}    \\
+		      x \oplus \tilde{1} & = \overline{x} \\
+		      x \oplus \tilde{0} & = x            \\
+		      x \vee \tilde{0}   & = x
+	      \end{align*}
+	\item Закони на де Морган
+	      \begin{align*}
+		      \overline{x \vee y}  & = \overline{x} \land \overline{y} \\
+		      \overline{x \land y} & = \overline{x} \vee \overline{y}
+	      \end{align*}
 \end{enumerate}
 
 \begin{note} % TODO: complete notes
-    М-вото от всички булеви ф-ии на \(n\) променливи е \(F_2^n\).
+	М-вото от всички булеви ф-ии на \(n\) променливи е \(F_2^n\).
 
-    М-вото от всички булеви ф-ии е \mexpr{F_2 = \cup_{n \in \mathbb{N}} F_2^n}.
+	М-вото от всички булеви ф-ии е \mexpr{F_2 = \cup_{n \in \mathbb{N}} F_2^n}.
 
-    Елемените на \(J_2^n\) са булевите вектори с дължина \(n\). Записваме ги като \mexpr{a = (a_1, ..., a_n)} 
-    или \mexpr{a = a_1a_2...a_n}.
+	Елемените на \(J_2^n\) са булевите вектори с дължина \(n\). Записваме ги като \mexpr{a = (a_1, ..., a_n)}
+	или \mexpr{a = a_1a_2...a_n}.
 
-    Нека \mexpr{x, y \in J_2, x = \overline{y}} \totw 
+	Нека \mexpr{x, y \in J_2, x = \overline{y}} \totw
 \end{note}

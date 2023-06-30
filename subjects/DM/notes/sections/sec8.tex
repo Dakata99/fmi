@@ -6,149 +6,149 @@
 \subsection{Принципи на изброителната комбинаторика}
 
 \begin{principle}[на Дирихле]
-    Ако \(X\) и \(Y\) са крайни множества и \mexpr{|X| > |Y|}, то не съществува инекция \mexpr{f: X \to Y}.
+	Ако \(X\) и \(Y\) са крайни множества и \mexpr{|X| > |Y|}, то не съществува инекция \mexpr{f: X \to Y}.
 \end{principle}
 
-\underline{Алтернативна формулировка}: ако има \(m\) ябълки в \(n\) чекмеджета и \(m > n\), то в поне едно 
+\underline{Алтернативна формулировка}: ако има \(m\) ябълки в \(n\) чекмеджета и \(m > n\), то в поне едно
 чекмедже има повече от една ябълка.
 
-\underline{Обобщение}: ако има \mexpr{k * n + 1} ябълки в \(n\) чекмеджета, то в поне едно чекмедже има повече 
-от \(k\) ябълки. 
+\underline{Обобщение}: ако има \mexpr{k * n + 1} ябълки в \(n\) чекмеджета, то в поне едно чекмедже има повече
+от \(k\) ябълки.
 
 \begin{principle}[на биекцията]
-    Нека \(X\) и \(Y\) са крайни множества. Тогава \mexpr{|X| = |Y|} \totw съществува биекция \mexpr{f: X \to Y}.
+	Нека \(X\) и \(Y\) са крайни множества. Тогава \mexpr{|X| = |Y|} \totw съществува биекция \mexpr{f: X \to Y}.
 \end{principle}
 
 \begin{principle}[на събирането (разбиването)]
-    Нека е дадено множество \(X\) и разбиване \mexpr{Y = \{Y_1, ..., Y_k\}} на \(X\). Тогава 
-    \mexpr{|X| = |Y_1| + ... + |Y_k|}.
+	Нека е дадено множество \(X\) и разбиване \mexpr{Y = \{Y_1, ..., Y_k\}} на \(X\). Тогава
+	\mexpr{|X| = |Y_1| + ... + |Y_k|}.
 \end{principle}
 
-Това остава в сила дори някои от множествата \mexpr{Y_1, ... Y_k} да са празни, защото мощностите на 
+Това остава в сила дори някои от множествата \mexpr{Y_1, ... Y_k} да са празни, защото мощностите на
 празните \(Y_i\) са нули и те не се отразяват на сумата.
 
 \begin{principle}[на изваждането]
-    Нека е дадено множество \(X\) в универсум \(U\). Тогава \mexpr{|X| = |U| - |\overline{X}|}.
+	Нека е дадено множество \(X\) в универсум \(U\). Тогава \mexpr{|X| = |U| - |\overline{X}|}.
 \end{principle}
 
-Очевидно \mexpr{\{X, \overline{X}\}} е разбиване на универсума, така че от принципа на събирането 
+Очевидно \mexpr{\{X, \overline{X}\}} е разбиване на универсума, така че от принципа на събирането
 имаме, че \mexpr{|U| = |X| + |\overline{X}|}.
 Не е възможно \(\overline{X}\) да е празно, но дори тогава твърдението остава в сила.
 
 \begin{principle}[на умножението]
-    Нека \(X\) и \(Y\) са множества. Тогава \mexpr{|X \times Y| = |X| * |Y|.}
+	Нека \(X\) и \(Y\) са множества. Тогава \mexpr{|X \times Y| = |X| * |Y|.}
 \end{principle}
 
 \begin{principle}[на делението]
-    Нека \(X\) е множество и \(R \subseteq X^2\) е релация на еквивалентност. Нека \(X\) има \(k\) класа 
-    на еквивалентност и всеки клас на еквивалентност има мощност \(m\). Тогава 
-    \mexpr{m = \frac{|X|}{k}}.
+	Нека \(X\) е множество и \(R \subseteq X^2\) е релация на еквивалентност. Нека \(X\) има \(k\) класа
+	на еквивалентност и всеки клас на еквивалентност има мощност \(m\). Тогава
+	\mexpr{m = \frac{|X|}{k}}.
 \end{principle}
 
 \subsection{Принцип на включването и изключването}
 
 \begin{principle}[на включването и изключването]
-    Нека е дадено покриване на множество и търсим мощността на множеството, като събираме и изваждаме 
-    мощностите на дяловете на покриването, техните сечения по двойки, по тройки и т.н.
+	Нека е дадено покриване на множество и търсим мощността на множеството, като събираме и изваждаме
+	мощностите на дяловете на покриването, техните сечения по двойки, по тройки и т.н.
 
-    \textbf{Обща формулировка}: За всяко \(n \ge 1\), за всеки \(n\) множества \mexpr{A_1, A_2, ..., A_n}:
-    \begin{align}
-        |A_1 \cup ... \cup A_{n}| = \sum_{1 \le i \le n} |A_i| &- \sum_{1 \le i < j \le n} |A_i \cap A_j| \\ \nonumber
-        &+ ... + (-1)^{n - 1} |A_1 \cap ... \cap A_{n}|
-    \end{align}
+	\textbf{Обща формулировка}: За всяко \(n \ge 1\), за всеки \(n\) множества \mexpr{A_1, A_2, ..., A_n}:
+	\begin{align}
+		|A_1 \cup ... \cup A_{n}| = \sum_{1 \le i \le n} |A_i| & - \sum_{1 \le i < j \le n} |A_i \cap A_j|      \\ \nonumber
+		                                                       & + ... + (-1)^{n - 1} |A_1 \cap ... \cap A_{n}|
+	\end{align}
 \end{principle}
 
 \begin{proof}
-    С индукция по \(n\):
+	С индукция по \(n\):
 
-    \bu{База}: \mexpr{n = 1}
+	\bu{База}: \mexpr{n = 1}
 
-    Тогава (1) става \mexpr{|A_1| = |A_1|}.
+	Тогава (1) става \mexpr{|A_1| = |A_1|}.
 
-    \bu{Индукционно предположение}: нека твърдението е изпълнено за всеки \(n - 1\) множества, т.е.
-    \begin{align}
-        |A_1 \cup ... \cup A_{n - 1}| &= \sum_{1 \le i \le n - 1} |A_i| \nonumber
-        - \sum_{1 \le i < j \le n - 1} |A_i \cap A_j| \\
-        &+ \dots + (-1)^{n - 2}|A_1 \cap ... \cap A_{n - 1}|
-    \end{align}
+	\bu{Индукционно предположение}: нека твърдението е изпълнено за всеки \(n - 1\) множества, т.е.
+	\begin{align}
+		|A_1 \cup ... \cup A_{n - 1}| & = \sum_{1 \le i \le n - 1} |A_i| \nonumber
+		- \sum_{1 \le i < j \le n - 1} |A_i \cap A_j|                                       \\
+		                              & + \dots + (-1)^{n - 2}|A_1 \cap ... \cap A_{n - 1}|
+	\end{align}
 
-    \bu{Индукционна стъпка}: ще докажем твърдението за всеки \(n\) множества.
+	\bu{Индукционна стъпка}: ще докажем твърдението за всеки \(n\) множества.
 
-    В сила е
-    \begin{align}
-        &|A_1 \cup ... \cup A_{n - 1} \cup A_n| = \nonumber
-        |\underbrace{(A_1 \cup ... \cup A_{n - 1})}_\text{X} \cup \underbrace{A_n}_\text{Y}| = \nonumber \\
-        &= |\underbrace{(A_1 \cup ... \cup A_{n - 1})}_\text{X}| + |\underbrace{A_n}_\text{Y}|
-        - |\underbrace{(A_1 \cup ... \cup A_{n - 1})}_\text{X} \cap \underbrace{A_n}_\text{Y}|
-    \end{align}, тъй като \mexpr{|X \cup Y| = |X| + |Y| - |X \cap Y|} (от (1) при \mexpr{n = 2}).
+	В сила е
+	\begin{align}
+		 & |A_1 \cup ... \cup A_{n - 1} \cup A_n| = \nonumber
+		|\underbrace{(A_1 \cup ... \cup A_{n - 1})}_\text{X} \cup \underbrace{A_n}_\text{Y}| = \nonumber \\
+		 & = |\underbrace{(A_1 \cup ... \cup A_{n - 1})}_\text{X}| + |\underbrace{A_n}_\text{Y}|
+		- |\underbrace{(A_1 \cup ... \cup A_{n - 1})}_\text{X} \cap \underbrace{A_n}_\text{Y}|
+	\end{align}, тъй като \mexpr{|X \cup Y| = |X| + |Y| - |X \cap Y|} (от (1) при \mexpr{n = 2}).
 
-    Знаем колко е \mexpr{|A_1 \cup \dots \cup A_{n - 1}|} от (2).
+	Знаем колко е \mexpr{|A_1 \cup \dots \cup A_{n - 1}|} от (2).
 
-    Да разгледаме \mexpr{|(A_1 \cup \dots \cup A_{n - 1}) \cap A_n|}. В сила е
-    \begin{align}
-        (A_1 \cup \dots \cup A_{n - 1}) \cap A_n = (A_1 \cap A_n) \cup \dots \cup (A_{n - 1} \cap A_n)
-    \end{align}
-    заради дистрибутивността на сечението спрямо обединението. Дясната страна на (4) е обобщение на 
-    \(n - 1\) множества и (2) е приложимо, т.е.:
-    \begin{align}
-        &|(A_1 \cap A_n) \cup \dots \cup (A_{n - 1} \cap A_n)| = \\ \nonumber
-        &\sum_{1 \le i \le n - 1} |A_i \cap A_n| \nonumber
-        - \sum_{1 \le i < j \le n - 1} |(A_i \cap A_n) \cap (A_j \cap A_n)| \\ \nonumber
-        &+ \sum_{1 \le i < j < k \le n - 1} |(A_i \cap A_n) \cap (A_j \cap A_n) \cap (A_k \cap A_n)| \\ \nonumber
-        & + \dots + (-1)^{n - 2} |(A_1 \cap A_n) \cap \dots \cap (A_{n - 1} \cap A_n)|
-    \end{align}
-    Получаваме
-    \begin{align}
-        |(A_1 \cup \dots \cup A_{n - 1}) \cap A_n| &= \sum_{1 \le i \le n - 1} |A_i \cap A_n| \\ \nonumber
-        &- \sum_{1 \le i < j \le n - 1} |A_i \cap A_j \cap A_n| \\ \nonumber
-        &+ \sum_{1 \le i < j < k \le n - 1} |A_i \cap A_j \cap A_k \cap A_n| \\ \nonumber
-        &\dots \\ \nonumber
-        &+ (-1)^{n - 2} |A_1 \cap A_2 \cap \dots \cap A_{n - 1} \cap A_n|
-    \end{align}
-    От (2) и (6) получаваме
-    \begin{align*}
-        |A_1 \cup \dots \cup A_{n - 1} \cup A_n| = \\
-        &(\sum_{1 \le i \le n - 1} |A_i| - \sum_{1 \le i < j \le n - 1} |A_i \cap A_j| \\
-        &+ \dots + (-1)^{n - 2} |A_1 \cap \dots \cap A_{n - 1}|) \\
-        + |A_n| \\
-        &- (\sum_{1 \le i \le n - 1} |A_i \cap A_n| \\
-        &- \dots + (-1)^{n - 2} |A_1 \cap A_2 \cap \dots \cap A_{n - 1} \cap A_n|) = \\
-        \sum_{1 \le i \le n} |A_i| &- \sum_{1 \le i < j \le n - 1} |A_i \cap A_j| \\
-        &+ \dots + (-1)^{n - 2} |A_1 \cap \dots \cap A_{n - 1}| \\
-        &- \sum_{1 \le i \le n - 1} |A_i \cap A_n| \\ 
-        &+ \dots + (-1)^{n - 1} |A_1 \cap A_2 \cap \dots \cap A_{n - 1} \cap A_n|
-    \end{align*}
-    Групираме събираемите по подходящ начин:
-    \begin{align*}
-        |A_1 \cup \dots \cup A_{n - 1} \cup A_n| = \\
-        \sum_{1 \le i \le n} |A_i| &- \underbrace{\sum_{1 \le i < j \le n - 1} |A_i \cap A_j|}_\text{*}
-        + \underbrace{\sum_{1 \le i < j < k \le n - 1} |A_i \cap A_j \cap A_k|}_\text{**} \\
-        &+ \dots + \underbrace{(-1)^{n - 2} |A_1 \cap \dots \cap A_{n - 1}|}_\text{***} \\
-        &- \underbrace{\sum_{1 \le i \le n - 1} |A_i \cap A_n|}_\text{*}
-        + \underbrace{\sum_{1 \le i < j \le n - 1} |A_i \cap A_j \cap A_n|}_\text{**} \\
-        &- \dots + \\ 
-        &+ \underbrace{(-1)^{n - 2} \sum_{1 \le i_1 < \dots < i_{n - 2} \le n - 1} 
-        |A_{i_1} \cap \dots \cap A_{i_{n - 2}} \cap A_n|}_\text{***} \\
-        &+ (-1)^{n - 1} |A_1 \cap \dots \cap A_n| = \\ \sum_{1 \le i \le n} |A_i|
-        &- \sum_{1 \le i < j \le n} |A_i \cap A_j| + \sum_{1 \le i < j \le n} |A_i \cap A_j \cap A_k| \\
-        &+ \dots + (-1)^{n - 2} \sum_{1 \le i_1 < \dots < i_{n - 1} \le n} |A_{i_1} \cap \dots \cap A_{i_{n - 1}}| \\
-        &+ (-1)^{n - 1} |A_1 \cap \dots \cap A_n| = (1)
-    \end{align*}
+	Да разгледаме \mexpr{|(A_1 \cup \dots \cup A_{n - 1}) \cap A_n|}. В сила е
+	\begin{align}
+		(A_1 \cup \dots \cup A_{n - 1}) \cap A_n = (A_1 \cap A_n) \cup \dots \cup (A_{n - 1} \cap A_n)
+	\end{align}
+	заради дистрибутивността на сечението спрямо обединението. Дясната страна на (4) е обобщение на
+	\(n - 1\) множества и (2) е приложимо, т.е.:
+	\begin{align}
+		 & |(A_1 \cap A_n) \cup \dots \cup (A_{n - 1} \cap A_n)| =                                     \\ \nonumber
+		 & \sum_{1 \le i \le n - 1} |A_i \cap A_n| \nonumber
+		- \sum_{1 \le i < j \le n - 1} |(A_i \cap A_n) \cap (A_j \cap A_n)|                            \\ \nonumber
+		 & + \sum_{1 \le i < j < k \le n - 1} |(A_i \cap A_n) \cap (A_j \cap A_n) \cap (A_k \cap A_n)| \\ \nonumber
+		 & + \dots + (-1)^{n - 2} |(A_1 \cap A_n) \cap \dots \cap (A_{n - 1} \cap A_n)|
+	\end{align}
+	Получаваме
+	\begin{align}
+		|(A_1 \cup \dots \cup A_{n - 1}) \cap A_n| & = \sum_{1 \le i \le n - 1} |A_i \cap A_n|                           \\ \nonumber
+		                                           & - \sum_{1 \le i < j \le n - 1} |A_i \cap A_j \cap A_n|              \\ \nonumber
+		                                           & + \sum_{1 \le i < j < k \le n - 1} |A_i \cap A_j \cap A_k \cap A_n| \\ \nonumber
+		                                           & \dots                                                               \\ \nonumber
+		                                           & + (-1)^{n - 2} |A_1 \cap A_2 \cap \dots \cap A_{n - 1} \cap A_n|
+	\end{align}
+	От (2) и (6) получаваме
+	\begin{align*}
+		|A_1 \cup \dots \cup A_{n - 1} \cup A_n| =                                                                 \\
+		                           & (\sum_{1 \le i \le n - 1} |A_i| - \sum_{1 \le i < j \le n - 1} |A_i \cap A_j| \\
+		                           & + \dots + (-1)^{n - 2} |A_1 \cap \dots \cap A_{n - 1}|)                       \\
+		+ |A_n|                                                                                                    \\
+		                           & - (\sum_{1 \le i \le n - 1} |A_i \cap A_n|                                    \\
+		                           & - \dots + (-1)^{n - 2} |A_1 \cap A_2 \cap \dots \cap A_{n - 1} \cap A_n|) =   \\
+		\sum_{1 \le i \le n} |A_i| & - \sum_{1 \le i < j \le n - 1} |A_i \cap A_j|                                 \\
+		                           & + \dots + (-1)^{n - 2} |A_1 \cap \dots \cap A_{n - 1}|                        \\
+		                           & - \sum_{1 \le i \le n - 1} |A_i \cap A_n|                                     \\
+		                           & + \dots + (-1)^{n - 1} |A_1 \cap A_2 \cap \dots \cap A_{n - 1} \cap A_n|
+	\end{align*}
+	Групираме събираемите по подходящ начин:
+	\begin{align*}
+		|A_1 \cup \dots \cup A_{n - 1} \cup A_n| =                                                                                             \\
+		\sum_{1 \le i \le n} |A_i| & - \underbrace{\sum_{1 \le i < j \le n - 1} |A_i \cap A_j|}_\text{*}
+		+ \underbrace{\sum_{1 \le i < j < k \le n - 1} |A_i \cap A_j \cap A_k|}_\text{**}                                                      \\
+		                           & + \dots + \underbrace{(-1)^{n - 2} |A_1 \cap \dots \cap A_{n - 1}|}_\text{***}                            \\
+		                           & - \underbrace{\sum_{1 \le i \le n - 1} |A_i \cap A_n|}_\text{*}
+		+ \underbrace{\sum_{1 \le i < j \le n - 1} |A_i \cap A_j \cap A_n|}_\text{**}                                                          \\
+		                           & - \dots +                                                                                                 \\
+		                           & + \underbrace{(-1)^{n - 2} \sum_{1 \le i_1 < \dots < i_{n - 2} \le n - 1}
+		|A_{i_1} \cap \dots \cap A_{i_{n - 2}} \cap A_n|}_\text{***}                                                                           \\
+		                           & + (-1)^{n - 1} |A_1 \cap \dots \cap A_n| =                                                                \\ \sum_{1 \le i \le n} |A_i|
+		                           & - \sum_{1 \le i < j \le n} |A_i \cap A_j| + \sum_{1 \le i < j \le n} |A_i \cap A_j \cap A_k|              \\
+		                           & + \dots + (-1)^{n - 2} \sum_{1 \le i_1 < \dots < i_{n - 1} \le n} |A_{i_1} \cap \dots \cap A_{i_{n - 1}}| \\
+		                           & + (-1)^{n - 1} |A_1 \cap \dots \cap A_n| = (1)
+	\end{align*}
 \end{proof}
 
 \begin{consequence}
-    За всяко \(n \ge 1\), за всеки \(n\) множества \(A_1, A_2, \dots, A_n\), намиращи се в произволен 
-    универсум \(U\):
-    \begin{align}
-        |\overline{A_1}\cap \dots \cap \overline{A_n}| = |U| &- \sum_{1 \le i \le n} |A_i| \nonumber
-        + \sum_{1 \le i < j \le n} |A_i \cap A_j| \\
-        &- \dots + (-1)^n |A_1 \cap \dots \cap A_n|
-    \end{align}
+	За всяко \(n \ge 1\), за всеки \(n\) множества \(A_1, A_2, \dots, A_n\), намиращи се в произволен
+	универсум \(U\):
+	\begin{align}
+		|\overline{A_1}\cap \dots \cap \overline{A_n}| = |U| & - \sum_{1 \le i \le n} |A_i| \nonumber
+		+ \sum_{1 \le i < j \le n} |A_i \cap A_j|                                                         \\
+		                                                     & - \dots + (-1)^n |A_1 \cap \dots \cap A_n|
+	\end{align}
 \end{consequence}
 
 \begin{proof}
-    Имаме \mexpr{|\overline{A_1 \cup \dots \cup A_n|} = |U| - |A_1 \cup \dots \cup A_n|} от принципа на 
-    изваждането.
-    Тогава \mexpr{|\overline{A_1 \cup \dots \cup A_n|} = |\overline{A_1}\cap \dots \cap \overline{A_n}| 
-    = |U| - (1)} и получаваме точно (7).
+	Имаме \mexpr{|\overline{A_1 \cup \dots \cup A_n|} = |U| - |A_1 \cup \dots \cup A_n|} от принципа на
+	изваждането.
+	Тогава \mexpr{|\overline{A_1 \cup \dots \cup A_n|} = |\overline{A_1}\cap \dots \cap \overline{A_n}|
+		= |U| - (1)} и получаваме точно (7).
 \end{proof}

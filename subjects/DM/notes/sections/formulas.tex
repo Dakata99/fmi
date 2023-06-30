@@ -1,30 +1,30 @@
 \section{All you need to know...}
 
 \begin{itemize}
-    \item За всяко \(k \in \mathbb{N}\), броят на числата, кратни на \(m \in \mathbb{N}\) и ненадхвърлящи \(k\),
-    е \(\left\lfloor \frac{k}{m} \right\rfloor\).
+	\item За всяко \(k \in \mathbb{N}\), броят на числата, кратни на \(m \in \mathbb{N}\) и ненадхвърлящи \(k\),
+	      е \(\left\lfloor \frac{k}{m} \right\rfloor\).
 \end{itemize}
 
 \subsection*{Комбинаторика}
 
 Нека \(n, m \in \mathbb{N}\). Тогава:
 \begin{itemize}
-    \item \(\binom{n}{m} = 0\), ако \(m > n\)
-    \item \(\binom{n}{m} = \binom{n}{n - m}\)
-    \item \(\binom{n}{m} = \binom{n - 1}{m} + \binom{n - 1}{m - 1}\)
+	\item \(\binom{n}{m} = 0\), ако \(m > n\)
+	\item \(\binom{n}{m} = \binom{n}{n - m}\)
+	\item \(\binom{n}{m} = \binom{n - 1}{m} + \binom{n - 1}{m - 1}\)
 \end{itemize}
 
 \[
-    \sum_{k = 0}^n \binom{n}{k}^2 = \binom{2n}{n}
+	\sum_{k = 0}^n \binom{n}{k}^2 = \binom{2n}{n}
 \]
 
 \[
-    \sum_{k = 0}^{n} \binom{n}{k} = 2^n\
+	\sum_{k = 0}^{n} \binom{n}{k} = 2^n\
 \]
 
 \begin{align*}
-    \sum_{k = 0}^{m} \binom{n + k - 1}{k} = \binom{n + m}{m} \\
-    \text{е броят разходки в мрежа, където \(m\) са редовете, а \(n\) са колоните}
+	\sum_{k = 0}^{m} \binom{n + k - 1}{k} = \binom{n + m}{m} \\
+	\text{е броят разходки в мрежа, където \(m\) са редовете, а \(n\) са колоните}
 \end{align*}
 
 Нека \(A\) и \(B\) са непразни множества, \(|A| = m, |B| = n\).
@@ -34,48 +34,48 @@
 
 Сумата
 \[
-    \sum_{k = 0}^{n} (-1)^k \binom{n}{k} (n - k)^m =
-    \begin{cases}
-        0, &m < n (\implies \text{няма сюрекции}) \\
-        n!, &m = n
-    \end{cases}
+	\sum_{k = 0}^{n} (-1)^k \binom{n}{k} (n - k)^m =
+	\begin{cases}
+		0,  & m < n (\implies \text{няма сюрекции}) \\
+		n!, & m = n
+	\end{cases}
 \]
 е броят на сюрекциите \(f: A \rightarrow B\) с \(m\)-елементен домейн и \(n\)-елементен кодомейн.
 Ако \(n = m\), то всяка сюрекция е и инекция (\(\rightarrow\) и биекция), а те са \(n!\) на брой.
 
 \begin{note}
-    Броят на "двукратните" сюрекции (т.е. всеки елемент от кодомейна е покрит поне 2 пъти) е:
-    \begin{align*}
-        \sum_{k = 0}^{n} [(-1)^k \binom{n}{k} \sum_{l = 0}^{k} \{\binom{k}{l} (\prod_{t = 0}^{l - 1} (m - t)) (n - k)^{m -l}\}]
-    \end{align*}
+	Броят на "двукратните" сюрекции (т.е. всеки елемент от кодомейна е покрит поне 2 пъти) е:
+	\begin{align*}
+		\sum_{k = 0}^{n} [(-1)^k \binom{n}{k} \sum_{l = 0}^{k} \{\binom{k}{l} (\prod_{t = 0}^{l - 1} (m - t)) (n - k)^{m -l}\}]
+	\end{align*}
 \end{note}
 
 \begin{example}
-    Нека имаме 19 различими подаръка и 6 деца (очевидно са различими). По колко начина всяко дете може
-    да получи поне 2 подаръка?
+	Нека имаме 19 различими подаръка и 6 деца (очевидно са различими). По колко начина всяко дете може
+	да получи поне 2 подаръка?
 \end{example}
 
 Броя функции \(f: A \rightarrow B\), които са:
 \begin{itemize}
-    \item инекции е \(n.(n - 1). ... .(n - m + 1)\)
-    \item не са сюрекции е "всички ф-ии без ограничение - сюрективните = "
-    \(n^m - \sum_{k = 0}^{n} (-1)^k \binom{n}{k} (n - k)^m\)
-    \item инекции и не са сюрекции:
-    \begin{itemize}
-        \item ако \(m = n\), то 0, защото тогава всички инекции са и сюрекции
-        \item ако \(m < n\), то \(n.(n - 1). ... .(n - m + 1)\), защото тогава няма сюрекции
-        \item ако \(m > n\), то 0, защото тогава няма инекции
-    \end{itemize}
+	\item инекции е \(n.(n - 1). ... .(n - m + 1)\)
+	\item не са сюрекции е "всички ф-ии без ограничение - сюрективните = "
+	      \(n^m - \sum_{k = 0}^{n} (-1)^k \binom{n}{k} (n - k)^m\)
+	\item инекции и не са сюрекции:
+	      \begin{itemize}
+		      \item ако \(m = n\), то 0, защото тогава всички инекции са и сюрекции
+		      \item ако \(m < n\), то \(n.(n - 1). ... .(n - m + 1)\), защото тогава няма сюрекции
+		      \item ако \(m > n\), то 0, защото тогава няма инекции
+	      \end{itemize}
 \end{itemize}
 
 Нека е дадено уравнението
 \[
-    x_1 + ... + x_n = k
+	x_1 + ... + x_n = k
 \], където \(x_1, ..., x_n \in \mathbb{N} \text{(са различими кутии), а } k \in \mathbb{N}
 \text{(са неразличимите топки)}\).
 Тогава броят решения без ограничения е:
 \[
-    \binom{n + k - 1}{n - 1} = \binom{n + k - 1}{k}
+	\binom{n + k - 1}{n - 1} = \binom{n + k - 1}{k}
 \]
 
 \includepdf[pages=-]{./sections/12fold.pdf}
