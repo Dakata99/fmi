@@ -1,0 +1,25 @@
+1) - 100%
+
+2) - 100%
+	i)public:
+		a)b
+		b)set_b, get_b, set_a, get_a
+		c)a
+	ii)protected:
+		a)b
+		b)set_b, get_b
+		c)a
+	iii)private:
+		a)b, set_a, get_a
+		b)set_b, get_b
+		c)a, set_a, get_a
+
+3) - 
+4) - 
+5) - 
+6) - 
+7) - 
+8) - 
+9) - 
+10) - 
+11) - 

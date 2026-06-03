@@ -1,0 +1,10 @@
+BasedOnStyle: Google
+IndentWidth: 4
+TabWidth: 4
+SortIncludes: false
+InsertBraces: true
+InsertNewlineAtEOF: true
+AccessModifierOffset: -4
+IndentAccessModifiers : false
+BraceWrapping:
+  AfterFunction: true
