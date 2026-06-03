@@ -188,6 +188,6 @@ character(0)
 - Comments start with #
 
 - For execution on Linux (in terminal):
-    ```
+    ```bash
         Rscript main.R
     ```

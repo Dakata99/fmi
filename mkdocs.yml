@@ -1,0 +1,42 @@
+site_name: FMI — Docs
+docs_dir: docs
+
+nav:
+    - Home: index.md
+    - Data Bases: data-bases/index.md
+    - Projects: projects/index.md
+    - R:
+        - r/index.md
+        - Overview: r/overview.md
+        - Basics:
+            - Basic Syntax: r/basic_syntax.md
+            - Data Types: r/data_types.md
+            - Data Structures: r/data_structures.md
+        - Data:
+            - Reading Data: r/reading_data.md
+            - Missing Data: r/missing_data.md
+            - Datasets:
+                - pokemon.csv: r/pokemon.csv
+                - titanic.csv: r/titanic.csv
+    - Packages: r/packages.md
+    - Statistics: r/statistics.md
+    - System Programming: system-programming/index.md
+
+theme:
+    name: material
+    palette:
+        - scheme: default
+          primary: teal
+          accent: amber
+          toggle:
+            icon: material/weather-night
+            name: Switch to dark mode
+        - scheme: slate
+          primary: teal
+    accent: amber
+    toggle:
+        icon: material/white-balance-sunny
+        name: Switch to light mode
+    features:
+        - navigation.instant
+        - content.code.copy

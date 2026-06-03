@@ -1,4 +1,5 @@
 #!/bin/bash
 
-alias build='cmake -S . -B build && cmake --build build'
-alias open_pdf='cmake --build build/ --target open_pdf'
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
