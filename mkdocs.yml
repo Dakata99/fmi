@@ -18,8 +18,8 @@ nav:
             - Datasets:
                 - pokemon.csv: r/pokemon.csv
                 - titanic.csv: r/titanic.csv
-    - Packages: r/packages.md
-    - Statistics: r/statistics.md
+        - Packages: r/packages.md
+        - Statistics: r/statistics.md
     - System Programming: system-programming/index.md
 
 theme:
