@@ -1,0 +1,9 @@
+<svg>
+	<line x1="0" y1="0" x2="5" y2="5" stroke-width="0.5" stroke="green" />
+	<line x1="5" y1="5" x2="10" y2="10" stroke-width="2" stroke="red" />
+	<line x1="10" y1="10" x2="15" y2="15" stroke-width="3" stroke="red" />
+	<line x1="15" y1="15" x2="20" y2="20" stroke-width="4" stroke="red" />
+	<line x1="20" y1="20" x2="25" y2="25" stroke-width="5" stroke="red" />
+	<line x1="25" y1="25" x2="30" y2="30" stroke-width="6" stroke="red" />
+	<circle cx="2.5" cy="2.5" r="2.5" fill="blue" />
+</svg>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>The R programming language – statistics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../text/reading_data.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">The R programming language</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../text/overview.html" aria-current="page">
+ <span class="menu-text">Overview</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../text/overview.html" class="sidebar-item-text sidebar-link"><strong>Overview</strong></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Get started</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../text/basic_syntax.html" class="sidebar-item-text sidebar-link">Basic syntax</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../text/data_structures.html" class="sidebar-item-text sidebar-link">Data structures</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../text/data_types.html" class="sidebar-item-text sidebar-link">Basic Data Types</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../text/missing_data.html" class="sidebar-item-text sidebar-link">Missing Data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../text/packages.html" class="sidebar-item-text sidebar-link">Packages</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../text/reading_data.html" class="sidebar-item-text sidebar-link">Reading Data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../text/statistics.html" class="sidebar-item-text sidebar-link active">Descriptive Statistics /Описателни статистики/</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page:</h2>
+   
+  <ul>
+  <li><a href="#descriptive-statistics-описателни-статистики" id="toc-descriptive-statistics-описателни-статистики" class="nav-link active" data-scroll-target="#descriptive-statistics-описателни-статистики">Descriptive Statistics /Описателни статистики/</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="descriptive-statistics-описателни-статистики" class="level1">
+<h1>Descriptive Statistics /Описателни статистики/</h1>
+<p>Population /Популация/ Total set of observations that can be made.</p>
+<p>Population sample /Извадка/ A sample is a random selection of population members. It is a small group drawn from the population that has the characteristics of the entire population. It can be with or without replacement.</p>
+<p>Example: Let’s say we want to measure the content of vitamin C in the kiwi. We can’t take all the kiwis and measure their vitamin C, so we make a population sample of 30 kiwis and measure their vitamin C.</p>
+<p>Let’s denote with: X a random variable measuring the vitamin C in 100g of kiwi. Let’s make 30 experiments, so our sample size n will be 30. And every one of our experiments will consist of taking 100g of kiwi and measuring the vitamin C in it, so this will be our sample x1,x2,…,x30.</p>
+<p>Let’s say our sample looks like this:</p>
+<blockquote class="blockquote">
+<p>vitamin &lt;- c(91.66, 92.34, 92.69, 92.97, 93.40, 92.94, 92.76, 92.39, 93.74, 91.77, 92.09, + 92.99, 93.13, 92.73, 92.81, 93.39, 93.29, 93.03, 93.13, 92.08, 93.27, 92.82, + 92.99, 92.60, 93.41, 92.89, 92.76, 92.19, 92.34, 92.68) Order statistics /Вариационен ред/ Order statistics present the sample data in a sorted way. They are denoted by x(1)≤x(2)≤…≤x(n), where x(1) is the smallest observation in the sample and x(n) is the biggest observation in the sample.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>sort(vitamin) [1] 91.66 91.77 92.08 92.09 92.19 92.34 92.34 92.39 92.60 92.68 92.69 92.73 [13] 92.76 92.76 92.81 92.82 92.89 92.94 92.97 92.99 92.99 93.03 93.13 93.13 [25] 93.27 93.29 93.39 93.40 93.41 93.74 One more example:</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>x &lt;- c(10, 3, 4, 7, 34, 23); x [1] 10 3 4 7 34 23 sort sorts the vector in ascending order by default</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>sort(x) [1] 3 4 7 10 23 34 sort(x, decreasing = TRUE) [1] 34 23 10 7 4 3 Rank /Ранг/ Ranks are the places of the elements in the order statistics. Rank(x(i))=i We can take the ranks of the elements using the rank function, which gives the respective rank of the number present in the vector, where the smallest number receives the rank 1.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>rank(x) [1] 4 1 2 3 6 5 When we have equal elements in the vector by default we are taking the average of their ranks. You can change this to take the smallest, biggest or the rank by occurrence of the equal elements using ties.method.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>y &lt;- c(x, 10); y [1] 10 3 4 7 34 23 10 rank(y) [1] 4.5 1.0 2.0 3.0 7.0 6.0 4.5 y &lt;- c(y, 10) rank(y) [1] 5 1 2 3 8 7 5 5 rank(y, ties.method = “average”) [1] 5 1 2 3 8 7 5 5 rank(y, ties.method = “min”) [1] 4 1 2 3 8 7 4 4 rank(y, ties.method = “max”) [1] 6 1 2 3 8 7 6 6 rank(y, ties.method = “first”) [1] 4 1 2 3 8 7 5 6 Order order returns the indices of the elements that we have to take to have the sorted vector</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>order(x) [1] 2 3 4 1 6 5 This means that if you take the elements of the vector in this order x[2]=3,x[3]=4,x[4]=7,x[1]=10,x[6]=23,x[5]=34 you will receive the sorted array</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>x[order(x)] [1] 3 4 7 10 23 34 Similarly if we have repeating elements.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>order(y) [1] 2 3 4 1 7 8 6 5 y[order(y)] [1] 3 4 7 10 10 10 23 34 Minimal observation min returns the smallest observation x(1)</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>min(vitamin) [1] 91.66 Maximal observation max returns the largest observation x(n)</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>max(vitamin) [1] 93.74 Sample range /Обхват/ Sample range is the spread (distance) from the biggest to the smallest value in the sample x(n)−x(1). We can make it using directly the formula</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>max(vitamin)-min(vitamin) [1] 2.08 or we can use function rangeto give us the smallest and the biggest observation and then to compute their difference with diff</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>range(vitamin) [1] 91.66 93.74 diff(range(vitamin)) [1] 2.08 Sample mean /Извадково средно/ Sample mean is the arithmetic average of all of the sample values. X¯=1n∑i=1nxi=x1+x2+…+xnn</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>mean(vitamin) [1] 92.776 Sample mean estimates the mean of the population.</p>
+</blockquote>
+<p>Another way to calculate the sample mean is by using the formula</p>
+<blockquote class="blockquote">
+<p>sum(vitamin) / length(vitamin) [1] 92.776 Another example when we have highly distinctive observation.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>vitaminOutlirs &lt;- c(vitamin, 320) mean(vitaminOutlirs) [1] 100.1058 As we see the mean is highly sensitive to distinctive observations.</p>
+</blockquote>
+<p>We can have NA values in the sample. We handle them with na.rm=TRUE</p>
+<blockquote class="blockquote">
+<p>vitaminMissing &lt;- vitamin vitaminMissing[c(3, 7, 21)] &lt;- NA vitaminMissing [1] 91.66 92.34 NA 92.97 93.40 92.94 NA 92.39 93.74 91.77 92.09 92.99 [13] 93.13 92.73 92.81 93.39 93.29 93.03 93.13 92.08 NA 92.82 92.99 92.60 [25] 93.41 92.89 92.76 92.19 92.34 92.68 mean(vitaminMissing) [1] NA mean(vitaminMissing, na.rm = TRUE) [1] 92.76148 mean(vitaminMissing[-c(3, 7, 21)]) [1] 92.76148 mean(vitaminMissing[!is.na(vitaminMissing)]) [1] 92.76148 or we can calculate it using the formula, but in these case we need to subtract the number of the NA from the sample size.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>sum(vitaminMissing) [1] NA sum(vitaminMissing, na.rm = TRUE) [1] 2504.56 sum(vitaminMissing, na.rm = TRUE) / (length(vitaminMissing) - sum(is.na(vitaminMissing))) [1] 92.76148 Trimmed mean /Орязано средно/ It is useful when the data contains many highly distinctive observations.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>vitaminOutlirs &lt;- c(vitaminOutlirs, 50, 405, 31) vitaminOutlirs [1] 91.66 92.34 92.69 92.97 93.40 92.94 92.76 92.39 93.74 91.77 [11] 92.09 92.99 93.13 92.73 92.81 93.39 93.29 93.03 93.13 92.08 [21] 93.27 92.82 92.99 92.60 93.41 92.89 92.76 92.19 92.34 92.68 [31] 320.00 50.00 405.00 31.00 length(vitaminOutlirs) [1] 34 Let’s trim off 117 (or 2 observations) from the top and the bottom and then take the average.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>mean(vitaminOutlirs) [1] 105.5671 mean(vitaminOutlirs, trim = 1/17) [1] 92.776 vitaminOutlirs &lt;- sort(vitaminOutlirs) vitaminTrim &lt;- vitaminOutlirs[-c(1, 2, 33, 34)]; vitaminTrim [1] 91.66 91.77 92.08 92.09 92.19 92.34 92.34 92.39 92.60 92.68 92.69 92.73 [13] 92.76 92.76 92.81 92.82 92.89 92.94 92.97 92.99 92.99 93.03 93.13 93.13 [25] 93.27 93.29 93.39 93.40 93.41 93.74 mean(vitaminTrim) [1] 92.776 If the number of observations to be trimmed is not integer, let’s say ⌊118⌋ (or 1 observation) from the top and the bottom and then take the average.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>length(vitaminOutlirs) / 18 [1] 1.888889 mean(vitaminOutlirs, trim = 1/18) [1] 98.54 vitaminTrim2 &lt;- vitaminOutlirs[-c(1, 34)]; vitaminTrim2 [1] 50.00 91.66 91.77 92.08 92.09 92.19 92.34 92.34 92.39 92.60 [11] 92.68 92.69 92.73 92.76 92.76 92.81 92.82 92.89 92.94 92.97 [21] 92.99 92.99 93.03 93.13 93.13 93.27 93.29 93.39 93.40 93.41 [31] 93.74 320.00 mean(vitaminTrim2) [1] 98.54 As we trim more and more, the value of the mean gets closer to the median which is when trim = 1/2.</p>
+</blockquote>
+<p>Sample median /Извадкова медиана/ Me(X)=12(x(⌊(n+1)/2⌋)+x(⌈(n+1)/2⌉)) Sample median is the number from which half of the observations are less than or equal to the median and half of the observations are bigger than or equal to the median. There for it is called also empirical 0.5-quantile or Q2.</p>
+<blockquote class="blockquote">
+<p>median(vitamin) [1] 92.815 median(vitaminOutlirs) [1] 92.815 As we can see the median is not sensitive to highly distinctive data.</p>
+</blockquote>
+<p>Another way to calculate the sample median is to sort the elements and then to use the above formula</p>
+<blockquote class="blockquote">
+<p>vitaminSort &lt;- sort(vitamin) n &lt;- length(vitamin) 1/2 * (vitaminSort[floor((n + 1) / 2)] + vitaminSort[ceiling((n + 1) / 2)]) [1] 92.815 We can handle NA in the data with na.rm=TRUE</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>median(vitaminMissing) [1] NA median(vitaminMissing, na.rm = TRUE) [1] 92.82 Or</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>t &lt;- vitaminMissing[!is.na(vitaminMissing)] t &lt;- sort(t) n &lt;- length(t) 1/2 * (t[floor((n + 1) / 2)] + t[ceiling((n + 1) / 2)]) [1] 92.82 Sample mode /Извадкова мода/ Sample mode is the most probable value in the sample for a discrete data or the place where the histogram has a maxima for a continuous data.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>x &lt;- c(10, 12, 10, 4, 7, 10, 0, 3, 10, 9, 7, 3, 5, 0, 12, 5, 7, 3, 7, 5, 10) For a discrete data we can take the frequency table /Честотна таблица/ with the function table. It presents how many times has an observation occurred in the sample.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>t &lt;- table(x); t x 0 3 4 5 7 9 10 12 2 3 1 3 4 1 5 2 names(t[which.max(t)]) [1] “10” We can also sort the table, by the frequencies of the observations, so it is more easy to see the mode</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>sort(table(x), decreasing = TRUE) x 10 7 3 5 0 12 4 9 5 4 3 3 2 2 1 1 The mode is not obligatory unique.</p>
+</blockquote>
+<p>For a continuous data</p>
+<blockquote class="blockquote">
+<p>x &lt;- c(10.5, 6.2, 10.4, 4.7, 7.3, 10.9, 0, 3.5, 7.3, 9.6, 7.1, 3.8, 5.3, 0.2, 12, 5.6, 7.8, 3.6, 7.2, 5.1, 8.3) We can slice the data using the cut function in equally long intervals.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>xGroup &lt;- cut(x, breaks = c(0, 2, 4, 6, 8, 10, 12)) class(xGroup) [1] “factor” xGroup [1] (10,12] (6,8] (10,12] (4,6] (6,8] (10,12] <na> (2,4] (6,8]<br>
+[10] (8,10] (6,8] (2,4] (4,6] (0,2] (10,12] (4,6] (6,8] (2,4]<br>
+[19] (6,8] (4,6] (8,10] Levels: (0,2] (2,4] (4,6] (6,8] (8,10] (10,12] This function returns a factor variable in which every observation is presented as the interval it is in.</na></p>
+</blockquote>
+<p>We calculate the frequency table and present the results on a plot.</p>
+<blockquote class="blockquote">
+<p>table(xGroup) xGroup (0,2] (2,4] (4,6] (6,8] (8,10] (10,12] 1 3 4 6 2 4 barplot(table(xGroup))</p>
+</blockquote>
+<p>One way to estimate the mode of continuous variable is Mo=L+fMo−fMo−12fMo−(fMo−1+fMo+1)w where: L is the left end of the interval with max frequency fMo−1 is the frequency of the interval before the interval with max frequency fMo is the frequency of the interval with max frequency fMo+1 is the frequency of the interval after the interval with max frequency w length of the interval with max frequency</p>
+<p>In our example: L=6</p>
+<p>fMo−1=4</p>
+<p>fMo=6</p>
+<p>fMo+1=2</p>
+<p>w=8−6=2</p>
+<p>Mo=6+6−42∗6−(4+2)∗2=6+212−6∗2=6+23≈6.67</p>
+<p>There are a lot of options presented on how to estimate the mode in modeest package with the most likely value function mlv. Sample quantile /Извадкови квантили/ P-quantile is the number from which p∗100% of the observations are less than or equal to the p-quantile and (1−p)∗100% of the observations are bigger than or equal to the p-quantile.</p>
+<blockquote class="blockquote">
+<p>p &lt;- 0.35 quantile(vitamin, p) 35% 92.696 First quartile /Първи квартил/ The first quartile Q1 is the 0.25-quantile.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>p &lt;- 0.25 quantile(vitamin, p) 25% 92.4425 Third quartile /Трети квартил/ The third quartile Q3 is the 0.75-quantile.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>p &lt;- 0.75 quantile(vitamin, p) 75% 93.105 IQR /Между квартилен размах/ The inter quartile range (IQR) is the difference between the 3rd and 1st quartile IQR=Q3−Q1.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>IQR(vitamin) [1] 0.6625 quantile(vitamin, 0.75) - quantile(vitamin, 0.25) 75% 0.6625 Lower hinge The lower hinge HL is the median of the first half of the ordered observations.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>fivenum(vitamin)[2] [1] 92.39 Upper hinge The upper hinge HU is the median of the second half of the ordered observations.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>fivenum(vitamin)[4] [1] 93.13 Standard deviation /Стандартно отклонение/ σ=1n−1∑i=1n(xi−x¯)2−−−−−−−−−−−−−−−√ Sample standard deviation measures the deviation of the observations around their average.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>sd(vitamin) [1] 0.4992588 sd(vitaminOutlirs) [1] 67.2411 Sample variance /Извадкова дисперсия/ σ2=1n−1∑i=1n(xi−x¯)2 Sample variance is the second power of the standard deviation.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>var(vitamin) [1] 0.2492593 var(vitaminOutlirs) [1] 4521.366 Differences x &lt;- c(10, 3, 4, 7, 34, 23); x [1] 10 3 4 7 34 23 diff returns the first differences</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>diff(x) [1] -7 1 3 27 -11 with lag=2 returns the second differences</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>diff(x, lag = 2) [1] -6 4 30 16 Cummulative sums /Кумулативни суми/ cumsum returns the cumulative sums</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>cumsum(x) [1] 10 13 17 24 58 81 Cummulative maximum /Кумулативни максимуми/ cummax returns the cumulative maximum</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>cummax(x) [1] 10 10 10 10 34 34 Cummulative minimum /Кумулативни минимуми/ cummin returns the cumulative minimum</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>cummin(x) [1] 10 3 3 3 3 3</p>
+</blockquote>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../text/reading_data.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Reading Data</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">Danny’s website</div>
+  </div>
+</footer>
+
+
+
+</body></html>

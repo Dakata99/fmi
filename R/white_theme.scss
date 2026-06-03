@@ -1,0 +1,31 @@
+/*-- scss:defaults --*/
+
+// Define colors
+$dark-blue: #283f59 !default;
+$brown: #ad987c !default;
+$blue: #6c859f !default;
+$green: #bcd5cd !default;
+$yellow: #ffd100 !default;
+$light: #f3efe9 !default;
+
+// Set specific elements
+$primary: #3574b7 !default;
+$secondary: $yellow !default;
+$navbar-bg: $dark-blue !default;
+$navbar-fg: $light !default;
+$navbar-hl: $yellow !default;
+$sidebar-bg: $light !default;
+$sidebar-fg: #888888 !default;
+$sidebar-hl: red !default;
+$footer-bg: $green !default;
+$footer-fg: #ffffff !default;
+$body-bg: white !default;
+$input-bg: white !default;
+$popover-bg: white !default;
+$body-color: black !default;
+
+.navbar-logo {
+    height: 42px !important;
+    max-width: unset !important;
+    max-height: unset !important;
+}

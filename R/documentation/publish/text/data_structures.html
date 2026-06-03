@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>The R programming language – data_structures</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../text/data_types.html" rel="next">
+<link href="../text/basic_syntax.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">The R programming language</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../text/overview.html" aria-current="page">
+ <span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../text/data_structures.html">
+ <span class="menu-text">Data structures</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../text/overview.html" class="sidebar-item-text sidebar-link"><strong>Overview</strong></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Get started</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../text/basic_syntax.html" class="sidebar-item-text sidebar-link">Basic syntax</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../text/data_structures.html" class="sidebar-item-text sidebar-link active">Data structures</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../text/data_types.html" class="sidebar-item-text sidebar-link">Basic Data Types</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../text/missing_data.html" class="sidebar-item-text sidebar-link">Missing Data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../text/packages.html" class="sidebar-item-text sidebar-link">Packages</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../text/reading_data.html" class="sidebar-item-text sidebar-link">Reading Data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../text/statistics.html" class="sidebar-item-text sidebar-link">Descriptive Statistics /Описателни статистики/</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page:</h2>
+   
+  <ul>
+  <li><a href="#data-structures" id="toc-data-structures" class="nav-link active" data-scroll-target="#data-structures">Data structures</a>
+  <ul class="collapse">
+  <li><a href="#vector" id="toc-vector" class="nav-link" data-scroll-target="#vector">Vector</a>
+  <ul class="collapse">
+  <li><a href="#some-more-examples" id="toc-some-more-examples" class="nav-link" data-scroll-target="#some-more-examples">Some more examples</a></li>
+  </ul></li>
+  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists">Lists</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="data-structures" class="level1">
+<h1>Data structures</h1>
+<section id="vector" class="level2">
+<h2 class="anchored" data-anchor-id="vector">Vector</h2>
+<p>Vectors are collections of elements from the <strong>same type</strong>. They keep track of the <strong>order</strong> that the data is entered in. Their <strong>indexing</strong> starts from <strong>1</strong>. You can create a vector in R using the combine function <strong>c</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>); x</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1 2 3</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>); y</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  4  5  6  7  8  9 10</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>); z</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] FALSE  TRUE</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>str <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"e"</span>, <span class="st">"x"</span>, <span class="st">"a"</span>, <span class="st">"m"</span>, <span class="st">"p"</span>, <span class="st">"l"</span>, <span class="st">"e"</span>); str</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "e" "x" "a" "m" "p" "l" "e"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that the vector has a type and can only store data from <strong>one type</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(x)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "double"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(y)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "double"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(z)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "logical"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(str)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "character"</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(pi)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "double"</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="fl">6.4</span>, <span class="st">"string"</span>); p</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "5"      "6.4"    "string"</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(p)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "character"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that in such situations, R will convert the element types to the <strong>highest common type</strong> following the order</p>
+<p><em>NULL &lt; logical &lt; integer &lt; double &lt; character</em></p>
+<p>R is a <strong>vectorized language</strong>, so operations are applied to each element of the vector automatically, without the need to loop through the vector.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>); x</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1 2 3</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 3 4 5</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">*</span> x</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  5 10 15</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1 4 9</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(x)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1.000000 1.414214 1.732051</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We also has a reduction functions <strong>length</strong>, <strong>sum</strong> that reduce down to a number.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(x)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 3</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Operations on vectors with the <strong>same length</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  6  8 10</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>y <span class="sc">-</span> x</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 4 4 4</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> y</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  5 12 21</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>x <span class="sc">/</span> y</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.2000000 0.3333333 0.4285714</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If the two vectors are with different length, to make the operation we repeat the elements of the shorter vector until the vectors has the same length and then perform the operation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  6  8 10  9 11 13</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>y <span class="sc">-</span> x</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 4 4 4 7 7 7</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> y</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  5 12 21  8 18 30</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>x <span class="sc">/</span> y</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.2000000 0.3333333 0.4285714 0.1250000 0.2222222 0.3000000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Taking elements from the vector:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">3</span>]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 7</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>y[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 7 8</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>y[<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>)]</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 8 6 7</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>y[<span class="sc">-</span><span class="dv">3</span>]</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  5  6  8  9 10</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">8</span>]</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can also assign value to a specific index:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">9</span>] <span class="ot">&lt;-</span> <span class="dv">11</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>y</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  5  6  7  8  9 10 NA NA 11</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If the right-hand side has fewer elements than the data vector referred on the left-hand side, R will recycle the value on the right-hand side. This makes it easy to assign many values at once.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">10</span><span class="sc">:</span><span class="dv">15</span>] <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>y</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1]  5  6  7  8  9 10 NA NA 11  3  3  3  3  3  3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Indexing by 0 returns a 0-length data vector.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">0</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">## numeric(0)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If no indexing is specified, the entire data vector is returned.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>y[]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1]  5  6  7  8  9 10 NA NA 11  3  3  3  3  3  3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Different ways to generate vectors:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">12</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1]  1  2  3  4  5  6  7  8  9 10 11 12</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:-</span><span class="dv">9</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1]  1  0 -1 -2 -3 -4 -5 -6 -7 -8 -9</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">17</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  1  3  5  7  9 11 13 15 17</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">length.out =</span> <span class="dv">5</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]   0  25  50  75 100</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">times =</span> <span class="dv">2</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1 2 3 1 2 3</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">times =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">1</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1 1 1 2 2 3</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">each =</span> <span class="dv">2</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1 1 2 2 3 3</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">each =</span> <span class="dv">2</span>, <span class="at">times =</span> <span class="dv">2</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] 1 1 2 2 3 3 1 1 2 2 3 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="some-more-examples" class="level3">
+<h3 class="anchored" data-anchor-id="some-more-examples">Some more examples</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>; x</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 5 6 7</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>; y</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2 3 4 5</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>y <span class="sc">&lt;=</span> <span class="dv">3</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  TRUE  TRUE FALSE FALSE</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>x[y <span class="sc">&lt;=</span> <span class="dv">3</span>]</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 5 6</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(y <span class="sc">&lt;=</span> <span class="dv">3</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x[y <span class="sc">&lt;=</span> <span class="dv">3</span>])</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 11</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(y <span class="sc">&gt;=</span> <span class="dv">3</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2 3 4</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">which</span>(y <span class="sc">&gt;=</span> <span class="dv">3</span>)]</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  6  7 NA</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">21</span>; z</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1]  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>z[y <span class="sc">&lt;=</span> <span class="dv">3</span>] <span class="co"># Different vectors length!!!</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  5  6  9 10 13 14 17 18 21</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can also have named vectors.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>testScores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">Sophia =</span> <span class="dv">73</span>, <span class="at">Olivia =</span> <span class="dv">87</span>, <span class="at">Bob =</span> <span class="dv">72</span>, <span class="at">Liam =</span> <span class="dv">99</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>testScores</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Sophia Olivia    Bob   Liam </span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="do">##     73     87     72     99</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can change the names of the students, with their surnames using the names function</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(testScores) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Brown"</span>, <span class="st">"Grant"</span>, <span class="st">"Johnson"</span>, <span class="st">"Smith"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>testScores</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   Brown   Grant Johnson   Smith </span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="do">##      73      87      72      99</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>or with their full names using the setNames function</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>testScores <span class="ot">&lt;-</span> <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="dv">73</span>, <span class="dv">87</span>, <span class="dv">72</span>, <span class="dv">99</span>), <span class="fu">c</span>(<span class="st">"Sophia Brown"</span>, <span class="st">"Olivia Grant"</span>, <span class="st">"Bob Johnson"</span>, <span class="st">"Liam Smith"</span>))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>testScores</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Sophia Brown Olivia Grant  Bob Johnson   Liam Smith </span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="do">##           73           87           72           99</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can see only the names</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(testScores)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "Sophia Brown" "Olivia Grant" "Bob Johnson"  "Liam Smith"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As you already see their are several functions which take on two forms, one to “get”(names) and one to “set”(names&lt;-) values.</p>
+<p>For example precip data set lists the average rainfall in inches for 70 cities in the United States. We can see the rainfall in “Los Angeles”</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>precip[<span class="st">"Los Angeles"</span>]</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Los Angeles </span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="do">##          14</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(precip)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="do">##      Mobile      Juneau     Phoenix Little Rock Los Angeles  Sacramento </span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="do">##        67.0        54.7         7.0        48.5        14.0        17.2</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(precip)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Seattle Tacoma        Spokane     Charleston      Milwaukee       Cheyenne </span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="do">##           38.8           17.4           40.8           29.1           14.6 </span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="do">##       San Juan </span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="do">##           59.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can sort them:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">sort</span>(precip), <span class="at">n =</span> <span class="dv">15</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="do">##        Phoenix           Reno    Albuquerque        El Paso          Boise </span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="do">##            7.0            7.2            7.8            7.8           11.5 </span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="do">##         Denver    Los Angeles       Cheyenne    Great Falls Salt Lake City </span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="do">##           13.0           14.0           14.6           15.0           15.2 </span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="do">##        Bismark     Sacramento        Spokane  San Francisco       Honolulu </span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="do">##           16.2           17.2           17.4           20.7           22.9</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">sort</span>(precip, <span class="at">decreasing =</span> <span class="cn">TRUE</span>), <span class="at">n =</span> <span class="dv">15</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="do">##        Mobile         Miami      San Juan   New Orleans        Juneau </span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="do">##          67.0          59.8          59.2          56.8          54.7 </span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  Jacksonville       Jackson       Memphis   Little Rock       Atlanta </span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="do">##          54.5          49.2          49.1          48.5          48.3 </span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="do">##       Houston      Columbia     Nashville Atlantic City       Norfolk </span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="do">##          48.2          46.4          46.0          45.5          44.7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="lists" class="level2">
+<h2 class="anchored" data-anchor-id="lists">Lists</h2>
+<p>Lists are ordered sets of components stored in a vector. The objects in the list are not necessarily from the same type, the same data structure or the same length. To create a list in R we use the function list.</p>
+<pre><code>&gt; x &lt;- list(1, 2, 3); x
+[[1]]
+[1] 1
+
+[[2]]
+[1] 2
+
+[[3]]
+[1] 3
+&gt; y &lt;- list(a = 1, b = 2, c = 3); y
+$a
+[1] 1
+
+$b
+[1] 2
+
+$c
+[1] 3
+&gt; z &lt;- list(a = c(1, 2, 4, 5),
++          b = c(TRUE, FALSE, TRUE),
++          c = c("Statistics")); z
+$a
+[1] 1 2 4 5
+
+$b
+[1]  TRUE FALSE  TRUE
+
+$c
+[1] "Statistics"
+&gt; p &lt;- list(a = c(1, 2, 4, 5),
++          b = list(c = c(TRUE, FALSE),
++                   d = c(1, 2, 4),
++                   e = c("string")),
++          c = data.frame(x = 1:10, y = rep(c(TRUE, FALSE), 5))); p
+$a
+[1] 1 2 4 5
+
+$b
+$b$c
+[1]  TRUE FALSE
+
+$b$d
+[1] 1 2 4
+
+$b$e
+[1] "string"
+
+
+$c
+    x     y
+1   1  TRUE
+2   2 FALSE
+3   3  TRUE
+4   4 FALSE
+5   5  TRUE
+6   6 FALSE
+7   7  TRUE
+8   8 FALSE
+9   9  TRUE
+10 10 FALSE</code></pre>
+<p>We can see each component’s structure using the str function:</p>
+<pre><code>&gt; str(p)
+List of 3
+ $ a: num [1:4] 1 2 4 5
+ $ b:List of 3
+  ..$ c: logi [1:2] TRUE FALSE
+  ..$ d: num [1:3] 1 2 4
+  ..$ e: chr "string"
+ $ c:'data.frame':  10 obs. of  2 variables:
+  ..$ x: int [1:10] 1 2 3 4 5 6 7 8 9 10
+  ..$ y: logi [1:10] TRUE FALSE TRUE FALSE TRUE FALSE ...</code></pre>
+<p>Each component from the list can be extracted using the $ sign followed by the component’s name or <strong>[[&lt;index&gt;]]</strong></p>
+<pre><code>&gt; p$a
+[1] 1 2 4 5
+&gt; p[[1]]
+[1] 1 2 4 5
+&gt; p$b$c
+[1]  TRUE FALSE
+&gt; p[[2]][[1]]
+[1]  TRUE FALSE</code></pre>
+<p>We can list the names of the components in the list using <strong>names</strong> function</p>
+<pre><code>&gt; names(p)
+[1] "a" "b" "c"
+&gt; names(p$b)
+[1] "c" "d" "e"</code></pre>
+<details>
+<summary>
+Matrix
+</summary>
+<p>All of the elements in a matrix must be of the same type. To create a matrix in R we use the function matrix.</p>
+<pre><code>&gt; A &lt;- matrix(c(2, 4, 1, 5, 7, 6),
++            nrow = 2,
++            ncol = 3)
+&gt; A
+     [,1] [,2] [,3]
+[1,]    2    1    7
+[2,]    4    5    6
+&gt; A &lt;- matrix(c(2, 4, 1, 5, 7, 6),
++            nrow = 2,
++            ncol = 3,
++            byrow = TRUE)
+&gt; A
+     [,1] [,2] [,3]
+[1,]    2    4    1
+[2,]    5    7    6
+&gt; B &lt;- matrix(c(2, 4, 3, 1, 5, 7),
++            nrow = 3,
++            ncol = 2)
+&gt; B
+     [,1] [,2]
+[1,]    2    1
+[2,]    4    5
+[3,]    3    7</code></pre>
+<p>Dimensions of the matrix</p>
+<pre><code>&gt; dim(B)
+[1] 3 2</code></pre>
+<p>Taking elements of the matrix:</p>
+<pre><code>&gt; A[2, 3]
+[1] 6
+&gt; A[2, ]
+[1] 5 7 6
+&gt; A[, 3]
+[1] 1 6
+&gt; A[, c(1, 3)]
+     [,1] [,2]
+[1,]    2    1
+[2,]    5    6</code></pre>
+<p>Operations on matrices:</p>
+<pre><code>&gt; A
+     [,1] [,2] [,3]
+[1,]    2    4    1
+[2,]    5    7    6
+&gt; A + 3
+     [,1] [,2] [,3]
+[1,]    5    7    4
+[2,]    8   10    9
+&gt; G &lt;- matrix(rep(1:2, times=3), nrow = 2); G
+     [,1] [,2] [,3]
+[1,]    1    1    1
+[2,]    2    2    2
+&gt; A + G
+     [,1] [,2] [,3]
+[1,]    3    5    2
+[2,]    7    9    8
+&gt; A*G
+     [,1] [,2] [,3]
+[1,]    2    4    1
+[2,]   10   14   12</code></pre>
+<p>t transpose the matrix:</p>
+<pre><code>&gt; t(A)
+     [,1] [,2]
+[1,]    2    5
+[2,]    4    7
+[3,]    1    6</code></pre>
+<p>%*% algebraic multiplication of two matrices</p>
+<pre><code>&gt; G %*% t(A)
+     [,1] [,2]
+[1,]    7   18
+[2,]   14   36</code></pre>
+<p>cbind combine a sequence of vector, matrix or data frame by columns</p>
+<pre><code>&gt; cbind(c(1, 2, 3), c(3, 4, 5))
+     [,1] [,2]
+[1,]    1    3
+[2,]    2    4
+[3,]    3    5
+&gt; cbind(B, c(3, 4, 5))
+     [,1] [,2] [,3]
+[1,]    2    1    3
+[2,]    4    5    4
+[3,]    3    7    5</code></pre>
+<p>rbind combine a sequence of vector, matrix or data frame by rows</p>
+<pre><code>&gt; rbind(c(1, 2, 3), c(3, 4, 5))
+     [,1] [,2] [,3]
+[1,]    1    2    3
+[2,]    3    4    5
+&gt; C &lt;- rbind(A, c(3, 4, 5)); C
+     [,1] [,2] [,3]
+[1,]    2    4    1
+[2,]    5    7    6
+[3,]    3    4    5</code></pre>
+<p>dimnames set names to the dimensions of the object</p>
+<pre><code>&gt; dimnames(C) &lt;- list(c("r1", "r2", "r3"), c("c1", "c2", "c3"))
+&gt; C
+   c1 c2 c3
+r1  2  4  1
+r2  5  7  6
+r3  3  4  5</code></pre>
+<p>You can also use colnames and rownames functions to set the names of the object</p>
+<pre><code>&gt; colnames(C) &lt;- c("col1", "col2", "col3")
+&gt; C
+   col1 col2 col3
+r1    2    4    1
+r2    5    7    6
+r3    3    4    5
+&gt; rownames(C) &lt;- c("row1", "row2", "row3")
+&gt; C
+     col1 col2 col3
+row1    2    4    1
+row2    5    7    6
+row3    3    4    5</code></pre>
+</details>
+<details>
+<summary>
+Arrays
+</summary>
+<p>Arrays are multidimensional vectors. All the elements in the array must be of the same type. To create an array in R we use the function array.</p>
+<pre><code>&gt; x &lt;- array(1:24, dim = c(4, 3, 2)); x
+, , 1
+
+     [,1] [,2] [,3]
+[1,]    1    5    9
+[2,]    2    6   10
+[3,]    3    7   11
+[4,]    4    8   12
+
+, , 2
+
+     [,1] [,2] [,3]
+[1,]   13   17   21
+[2,]   14   18   22
+[3,]   15   19   23
+[4,]   16   20   24</code></pre>
+<p>Taking elements of the array</p>
+<pre><code>&gt; x[1, , ]
+     [,1] [,2]
+[1,]    1   13
+[2,]    5   17
+[3,]    9   21
+&gt; x[1, , 1]
+[1] 1 5 9
+&gt; x[, , 1]
+     [,1] [,2] [,3]
+[1,]    1    5    9
+[2,]    2    6   10
+[3,]    3    7   11
+[4,]    4    8   12</code></pre>
+<p>dimnames set names to the dimensions of the object</p>
+<pre><code>&gt; dimnames(x) &lt;- list(c("x1", "x2", "x3", "x4"), c("y1", "y2", "y3"), c("z1", "z2"))
+&gt; x
+, , z1
+
+   y1 y2 y3
+x1  1  5  9
+x2  2  6 10
+x3  3  7 11
+x4  4  8 12
+
+, , z2
+
+   y1 y2 y3
+x1 13 17 21
+x2 14 18 22
+x3 15 19 23
+x4 16 20 24</code></pre>
+</details>
+<details>
+<summary>
+Data frames
+</summary>
+<p>Data frames hold vectors not necessarily from the same type but with the same length. To create a data frame in R we use the function data.frame.</p>
+<pre><code>&gt; first &lt;- 1:10 
+&gt; second &lt;- c("aa", "bb", "cc", "dd", "ee", "ff", "gg", "hh", "ii", "jj") 
+&gt; third &lt;- c(TRUE, FALSE, TRUE, TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE) 
+&gt; df &lt;- data.frame(first, second, third); df
+   first second third
+1      1     aa  TRUE
+2      2     bb FALSE
+3      3     cc  TRUE
+4      4     dd  TRUE
+5      5     ee FALSE
+6      6     ff  TRUE
+7      7     gg FALSE
+8      8     hh FALSE
+9      9     ii  TRUE
+10    10     jj FALSE
+&gt; class(df)
+[1] "data.frame"</code></pre>
+<p>You can use View function to visualize the data frame in a separate window.</p>
+<p>head and tail visualize the first 6 respectively the last 6 set of rows of the data frame</p>
+<pre><code>&gt; head(df)
+  first second third
+1     1     aa  TRUE
+2     2     bb FALSE
+3     3     cc  TRUE
+4     4     dd  TRUE
+5     5     ee FALSE
+6     6     ff  TRUE
+&gt; tail(df)
+   first second third
+5      5     ee FALSE
+6      6     ff  TRUE
+7      7     gg FALSE
+8      8     hh FALSE
+9      9     ii  TRUE
+10    10     jj FALSE</code></pre>
+<p>We can change this for example to the first 3 respectively the last 3 set of rows of the data frame</p>
+<pre><code>&gt; head(df, n = 3)
+  first second third
+1     1     aa  TRUE
+2     2     bb FALSE
+3     3     cc  TRUE
+&gt; tail(df, n = 3)
+   first second third
+8      8     hh FALSE
+9      9     ii  TRUE
+10    10     jj FALSE</code></pre>
+<p>dim, nrow and ncol shows the dimensions of the data frame</p>
+<pre><code>&gt; dim(df)
+[1] 10  3
+&gt; dim(df)[1]
+[1] 10
+&gt; dim(df)[2]
+[1] 3
+&gt; nrow(df)
+[1] 10
+&gt; ncol(df)
+[1] 3</code></pre>
+<p>To view the data types of the columns we can use the str function</p>
+<pre><code>&gt; str(df)
+'data.frame':   10 obs. of  3 variables:
+ $ first : int  1 2 3 4 5 6 7 8 9 10
+ $ second: chr  "aa" "bb" "cc" "dd" ...
+ $ third : logi  TRUE FALSE TRUE TRUE FALSE TRUE ...</code></pre>
+<p>It is possible to give or change the names of the columns of the data frame</p>
+<pre><code>&gt; df &lt;- data.frame(A = first, B = second, C = third); df
+    A  B     C
+1   1 aa  TRUE
+2   2 bb FALSE
+3   3 cc  TRUE
+4   4 dd  TRUE
+5   5 ee FALSE
+6   6 ff  TRUE
+7   7 gg FALSE
+8   8 hh FALSE
+9   9 ii  TRUE
+10 10 jj FALSE</code></pre>
+<p>names shows the names of the columns of the data frame</p>
+<pre><code>&gt; names(df)
+[1] "A" "B" "C"</code></pre>
+<p>You can give names to the rows and columns of the data frame using the colnames and rownames functions</p>
+<pre><code>&gt; colnames(df) &lt;- c("f", "s", "t"); df
+    f  s     t
+1   1 aa  TRUE
+2   2 bb FALSE
+3   3 cc  TRUE
+4   4 dd  TRUE
+5   5 ee FALSE
+6   6 ff  TRUE
+7   7 gg FALSE
+8   8 hh FALSE
+9   9 ii  TRUE
+10 10 jj FALSE
+&gt; rownames(df) &lt;- c("one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"); df
+       f  s     t
+one    1 aa  TRUE
+two    2 bb FALSE
+three  3 cc  TRUE
+four   4 dd  TRUE
+five   5 ee FALSE
+six    6 ff  TRUE
+seven  7 gg FALSE
+eight  8 hh FALSE
+nine   9 ii  TRUE
+ten   10 jj FALSE</code></pre>
+<p>or we can use predefined constants for the names</p>
+<pre><code>&gt; colnames(df) &lt;- LETTERS[1:3]; df
+       A  B     C
+one    1 aa  TRUE
+two    2 bb FALSE
+three  3 cc  TRUE
+four   4 dd  TRUE
+five   5 ee FALSE
+six    6 ff  TRUE
+seven  7 gg FALSE
+eight  8 hh FALSE
+nine   9 ii  TRUE
+ten   10 jj FALSE
+&gt; rownames(df) &lt;- month.name[1:10]; df
+           A  B     C
+January    1 aa  TRUE
+February   2 bb FALSE
+March      3 cc  TRUE
+April      4 dd  TRUE
+May        5 ee FALSE
+June       6 ff  TRUE
+July       7 gg FALSE
+August     8 hh FALSE
+September  9 ii  TRUE
+October   10 jj FALSE</code></pre>
+<p>Data frame attributes: names lists the names of the columns and row.names lists the names of the rows.</p>
+<pre><code>&gt; attributes(df)
+$names
+[1] "A" "B" "C"
+
+$class
+[1] "data.frame"
+
+$row.names
+ [1] "January"   "February"  "March"     "April"     "May"       "June"     
+ [7] "July"      "August"    "September" "October"  
+&gt; names(df)
+[1] "A" "B" "C"
+&gt; colnames(df)
+[1] "A" "B" "C"
+&gt; rownames(df)
+ [1] "January"   "February"  "March"     "April"     "May"       "June"     
+ [7] "July"      "August"    "September" "October"</code></pre>
+<p>Taking elements of a data frame</p>
+<p>Taking the element from the 2 row, 3 column</p>
+<pre><code>&gt; df[2, 3]
+[1] FALSE</code></pre>
+<p>Taking the elements from the 2 row</p>
+<pre><code>&gt; df[2, ]
+         A  B     C
+February 2 bb FALSE</code></pre>
+<p>Taking the elements from the 3 column</p>
+<pre><code>&gt; df[, 3]
+ [1]  TRUE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE</code></pre>
+<p>Taking the elements from the 2 row, 2 and 3 columns</p>
+<pre><code>&gt; df[2, 2:3]
+          B     C
+February bb FALSE</code></pre>
+<p>Taking the elements from the 2 row, columns “A” and “B”</p>
+<pre><code>&gt; df[2, c("A" , "B")]
+         A  B
+February 2 bb</code></pre>
+<p>Taking the elements from the column “A”</p>
+<pre><code>&gt; df$A
+ [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<p>Taking the elements from the 2 column</p>
+<pre><code>&gt; df[[2]]
+ [1] "aa" "bb" "cc" "dd" "ee" "ff" "gg" "hh" "ii" "jj"</code></pre>
+</details>
+<details>
+<summary>
+Additional notes
+</summary>
+<ul>
+<li>For execution on Linux (in terminal): <code>Rscript main.R</code></li>
+</ul>
+</details>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../text/basic_syntax.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Basic syntax</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../text/data_types.html" class="pagination-link">
+        <span class="nav-page-text">Basic Data Types</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">Danny’s website</div>
+  </div>
+</footer>
+
+
+
+</body></html>

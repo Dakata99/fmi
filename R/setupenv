@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Check if python3 is installed
+/usr/bin/which python3 > /dev/null
+PYTHON_AVAILABLE=$?
+
+if [ ${PYTHON_AVAILABLE} -ne 0 ]
+then
+    echo "Python 3 not found in \$PATH"
+    echo
+    echo "To install:"
+    echo "\tsudo apt install python3"
+else
+    # Locate scripts path
+    TOP_DIR=`readlink -f ${BASH_SOURCE[0]} | xargs dirname`
+    SCRIPTS_DIR="${TOP_DIR}/cmake/scripts"
+
+    # Locate python env path
+    PYTHON_ENV_BIN_DIR="${TOP_DIR}/build/venv/bin"
+
+    # Add folders to path
+    export PATH="${PYTHON_ENV_BIN_DIR}:${SCRIPTS_DIR}:${PATH}"
+    export TOP_DIR
+fi

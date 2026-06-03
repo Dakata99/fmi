@@ -1,0 +1,71 @@
+USE SHIPS
+
+-- 1
+SELECT COUNT(*) AS CLASS_COUNT
+FROM CLASSES
+
+-- 2
+SELECT AVG(NUMGUNS) AS AVG_NUMGUNS
+FROM SHIPS s
+    JOIN CLASSES c ON s.CLASS = c.CLASS
+WHERE LAUNCHED IS NOT NULL
+
+-- 3
+SELECT CLASS, MIN(LAUNCHED) AS FIRST_YEAR, MAX(LAUNCHED) AS LAST_YEAR
+FROM SHIPS
+GROUP BY CLASS
+
+-- 4
+
+-- Ако не се интересуваме от класовете без потънали кораби и класовете без кораби
+SELECT CLASS, COUNT(*) AS SUNKED
+FROM OUTCOMES o
+    JOIN SHIPS s ON o.SHIP = s.NAME
+WHERE RESULT = 'sunk'
+GROUP BY CLASS
+
+-- Ако се интересуваме от класовете без потънали кораби и класовете без кораби
+
+-- Решение 1
+
+SELECT s.CLASS, COUNT(o.SHIP) AS SUNKED
+FROM CLASSES c
+    LEFT OUTER JOIN SHIPS s ON c.CLASS = s.CLASS
+    LEFT OUTER JOIN OUTCOMES o ON s.NAME = o.SHIP AND o.RESULT = 'sunk'
+GROUP BY s.CLASS
+
+-- Решение 2
+
+SELECT c.CLASS, SUM(CASE o.RESULT
+                    WHEN 'sunk' THEN 1
+                    ELSE 0 END) AS SUNKED
+FROM CLASSES c
+    LEFT OUTER JOIN SHIPS s ON c.CLASS = s.CLASS
+    LEFT OUTER JOIN OUTCOMES o ON s.NAME = o.SHIP
+GROUP BY c.CLASS
+
+-- 5
+
+SELECT s.CLASS, COUNT(s.NAME) AS SHIP_COUNT
+FROM SHIPS s
+    JOIN OUTCOMES o ON s.NAME = o.SHIP
+WHERE o.RESULT = 'sunk' AND s.CLASS IN (SELECT CLASS
+                                        FROM SHIPS
+                                        GROUP BY CLASS
+                                        HAVING COUNT(*) > 4)
+GROUP BY s.CLASS
+
+--
+
+SELECT s.CLASS, SUM(CASE o.RESULT
+                    WHEN 'sunk' THEN 1
+                    ELSE 0 END) AS SHIP_COUNT
+FROM SHIPS s
+    LEFT OUTER JOIN OUTCOMES o ON s.NAME = o.SHIP
+GROUP BY s.CLASS
+HAVING COUNT(DISTINCT s.NAME) > 4
+
+-- 6
+SELECT COUNTRY, AVG(DISPLACEMENT) AS AVG_WEIGHT
+FROM CLASSES
+GROUP BY COUNTRY

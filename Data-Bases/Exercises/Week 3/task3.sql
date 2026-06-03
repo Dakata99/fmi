@@ -1,0 +1,46 @@
+USE SHIPS
+
+-- 1
+SELECT DISTINCT COUNTRY
+FROM CLASSES
+WHERE NUMGUNS >= ALL (SELECT NUMGUNS
+                      FROM CLASSES)
+
+-- 2
+SELECT DISTINCT CLASS
+FROM SHIPS
+WHERE NAME IN (SELECT SHIP
+               FROM OUTCOMES
+               WHERE RESULT = 'sunk')
+
+-- 3
+SELECT NAME
+FROM SHIPS
+WHERE CLASS IN (SELECT CLASS
+                FROM CLASSES
+                WHERE BORE = 16)
+
+-- 4
+SELECT BATTLE
+FROM OUTCOMES
+WHERE SHIP IN (SELECT NAME
+               FROM SHIPS
+               WHERE CLASS = 'Kongo')
+
+-- 5
+SELECT NAME
+FROM SHIPS
+WHERE CLASS IN (SELECT CLASS
+                FROM CLASSES c1
+                WHERE c1.NUMGUNS >= ALL (SELECT NUMGUNS
+                                        FROM CLASSES c2
+                                        WHERE c1.BORE = c2.BORE))
+
+--
+
+SELECT NAME
+FROM SHIPS s
+    JOIN CLASSES c1 ON s.CLASS = c1.CLASS
+WHERE c1.NUMGUNS >= ALL (SELECT NUMGUNS
+                         FROM CLASSES c2
+                         WHERE c1.BORE = c2.BORE)

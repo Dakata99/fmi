@@ -1,0 +1,55 @@
+project:
+  type: website
+  output-dir: publish
+
+website:
+  title: "The R programming language"
+  navbar:
+    pinned: true
+    # logo:
+    left:
+      - text: "Overview"
+        file: "text/overview.qmd"
+      - text: "Data structures"
+        file: "text/data_structures.qmd"
+
+  sidebar:
+    - title: "Overview"
+      style: "docked"
+      border: true
+      collapse-level: 3
+      contents:
+        - text: "**Overview**"
+          file: "text/overview.qmd"
+        - "---"
+        - section: "Get started"
+          contents:
+            - "text/basic_syntax.qmd"
+            - "text/data_structures.qmd"
+            - "text/data_types.qmd"
+            - "text/missing_data.qmd"
+            - "text/packages.qmd"
+            - "text/reading_data.qmd"
+            - "text/statistics.qmd"
+        - "---"
+
+  page-navigation: true
+  page-footer:
+    border: false
+    center:
+      "Danny's website"
+highlight-style: pygments
+
+format:
+  html:
+    fig-align: "center"
+    theme:
+      light: white_theme.scss
+#      dark: black_theme.scss # TODO
+    code-copy: true
+    code-line_numbers: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    toc-title: "On this page:"

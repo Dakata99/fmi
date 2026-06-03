@@ -1,0 +1,193 @@
+# Basic syntax
+
+## Arithmetic operators
+
+```{r}
+#| eval: false
+
+x + y   # Addition
+x - y   # Subtraction
+x * y   # Multiplication
+x / y   # Division
+x ^ y   # Raise to a power
+x ** y  # Raise to a power (old style /still not deprecated/ translated to ^ in the parser.)
+x %% y  # Modulus - remainder after the division
+x %/% y # Integer Division
+
+x, y: numeric or complex vectors or objects which can be coerced to such, or other objects for which methods have been written.
+```
+
+For documentation write ?Arithmetic in the R console:
+```{r}
+#| collapse: true
+?Arithmetic
+help("Arithmetic")
+```
+
+Using example we can run the examples in the end of the documentation:
+```{r}
+#| collapse: true
+example("Arithmetic")
+```
+
+Using apropos we can look for similar function names:
+```{r}
+#| collapse: true
+apropos("sq")
+```
+
+Using find we can find from which package is the function.
+```{r}
+#| collapse: true
+find("sqrt")
+```
+
+We can only search functions from the already loaded packages.
+```{r}
+#| collapse: true
+find("simple.lm")
+library(UsingR)
+find("simple.lm")
+```
+
+## Asignement operators
+For documentation:
+```{r}
+#| collapse: true
+?assignOps
+```
+
+There are 3 different assignment operators:
+```{r}
+#| collapse: true
+x = 5
+y <- 5  # Recommended
+5 -> z
+x; y; z # Prints
+```
+
+Differences between them:
+<ol>
+    <li>They have different operator precedence (look at `?Syntax`).</li>
+    <li>`=` has two meanings:</li>
+        <ul>
+            <li>operator: assignment operator</li>
+            <li>syntax token: named argument passing in a function call</li>
+        </ul>
+</ol>
+
+```{r}
+#| collapse: true
+x = 20
+mean(x = 3); x
+mean(x <- 3); x # Not a good idea
+```
+
+## Syntax
+- R is case sensitive
+```{r}
+#| collapse: true
+#| error: true
+A <- 5
+a
+```
+
+- R is (dynamic language) not typified
+```{r}
+#| collapse: true
+a <- 5
+a <- 5.4
+a <- "string"
+```
+
+- Valid names consist of letters, numbers and the dot or underline character.
+
+## Functions
+- R can have default arguments and the arguments can be matched by position or by name.
+
+## Printing values
+
+You can print an object just by typing its name, because R is wrapping that object name within the **print** command, so the following lines of code are identical:
+
+```{r}
+#| collapse: true
+a
+print(a)
+```
+
+R uses the idea of generic functions, so **print** function looks for the attribute class of the object and the class type shows **print** how to generate the output.
+
+**print** gives some options for formatting the output
+
+- removing the quotes from the output
+
+```{r}
+#| collapse: true
+print(a)
+print(a, quote = FALSE)
+```
+
+- determine how many digits from the output to be shown
+
+```{r}
+#| collapse: true
+a <- 3145.429357453; a
+print(a, digits = 10)
+```
+
+Also we can redirect the output to a file using **sink** and then return it back to the console
+
+```{r}
+#| eval: false
+sink("myoutput.txt")
+```
+
+## Working directory
+**getwd** returns the absolute path to the current working directory.
+
+```{r}
+#| collapse: true
+getwd()
+```
+
+The working directory tells R where to look for files and where to create files. So the file that you have just created in the previous example **myoutput.txt** will be created in this directory.
+
+If you want to change the working directory you can use **setwd** function
+```{r}
+#| eval: false
+setwd("<path-to-directory>")
+```
+
+## Objects
+Everything in R is an object.
+
+**ls** prints all names of the objects in the global environment
+
+```{r}
+ls()
+```
+
+**rm** removes objects from the current environment
+
+```{r}
+rm(x, y, z)
+ls()
+```
+
+You can also remove all the objects from the current environment using
+
+```{r}
+#| results: asis
+rm(list = ls())
+ls()
+character(0)
+```
+
+## Additional notes
+
+- Comments start with #
+
+- For execution on Linux (in terminal):
+    ```
+        Rscript main.R
+    ```
