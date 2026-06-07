@@ -1,4 +1,12 @@
+INHERIT: .mkdocs.base.yml
+
 site_name: FMI — Docs
+site_description: Documentation for FMI courses and projects
+site_url: https://fmi-docs.github.io/
+
+repo_url: https://github.com/Dakata99/fmi
+repo_name: Dakata99/fmi
+
 docs_dir: docs
 
 nav:
@@ -21,22 +29,3 @@ nav:
         - Packages: r/packages.md
         - Statistics: r/statistics.md
     - System Programming: system-programming/index.md
-
-theme:
-    name: material
-    palette:
-        - scheme: default
-          primary: teal
-          accent: amber
-          toggle:
-            icon: material/weather-night
-            name: Switch to dark mode
-        - scheme: slate
-          primary: teal
-    accent: amber
-    toggle:
-        icon: material/white-balance-sunny
-        name: Switch to light mode
-    features:
-        - navigation.instant
-        - content.code.copy

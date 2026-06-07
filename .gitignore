@@ -1,3 +1,7 @@
+# Mkdocs files to ignore
+site/
+.mkdocs.base.yml
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof

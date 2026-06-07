@@ -2,30 +2,19 @@ name: Deploy MkDocs site
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: python -m pip install --upgrade pip && pip install -r requirements.txt
-
-      - name: Build site
-        run: mkdocs build
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site
-          publish_branch: gh-pages
-          nojekyll: true
+  docs:
+    uses: Dakata99/devtools/.github/workflows/mkdocs-pages.yml@main
+    with:
+      python-version: "3.12"
+      config-file: "mkdocs.yml"
+      site-dir: "site"

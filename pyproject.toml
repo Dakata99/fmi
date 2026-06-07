@@ -1,0 +1,15 @@
+[project]
+name = "fmi"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "devtools[docs]",
+]
+
+[tool.uv.sources]
+devtools = { git = "https://github.com/Dakata99/devtools.git", rev = "main" }

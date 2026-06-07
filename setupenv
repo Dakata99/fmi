@@ -1,0 +1,7 @@
+#!/bin/bash
+
+PROMPT=fmi
+export UV_PROJECT_ENVIRONMENT=.$PROMPT
+uv venv $UV_PROJECT_ENVIRONMENT --prompt $PROMPT --clear
+source $UV_PROJECT_ENVIRONMENT/bin/activate
+uv sync --active --quiet
