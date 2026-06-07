@@ -1,5 +1,5 @@
 # Object - oriented programming (OOP)
-
+	- Collection of programming problems (Сборник от задачи)
 	-	 Сборник от задачи по програмиране на С++
 	                       Втора част
 		     Обектно-ориентирано програмиране

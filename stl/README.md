@@ -1,9 +1,4 @@
-	# C++
-
-## Object - oriented programming (OOP)
-	- Collection of programming problems (Сборник от задачи)
-
-## Standard template library (STL)
+# Standard template library (STL)
 	- Algorithms: 
 		-- Sorting
 		-- Searching
@@ -23,17 +18,3 @@
 		-- Functors
 
 	- Iterators
-
-## CMake commands
-
-```bash
-cmake -S . -B build
-cmake --build build
-```
-
-## Python wrapper
-
-```bash
-. setupenv
-./cmake/run.py -h
-```
