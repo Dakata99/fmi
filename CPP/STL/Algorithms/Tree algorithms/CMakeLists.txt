@@ -1,4 +1,4 @@
-# dplyubenov
+# Dakata99
 
 file(GLOB SOURCES src/*)
 message(STATUS "SOURCES = ${SOURCES}")
